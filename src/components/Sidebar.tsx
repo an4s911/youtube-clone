@@ -89,7 +89,9 @@ function Sidebar() {
             </div>
             <Hr />
             <div className={sectionStyles}>
-                <h4 className="text-base font-semibold">Explore</h4>
+                <h4 className="hidden lg:block text-base font-semibold">
+                    Explore
+                </h4>
                 <List
                     items={[
                         {
@@ -117,7 +119,9 @@ function Sidebar() {
             </div>
             <Hr />
             <div className={sectionStyles}>
-                <h4 className="text-base font-semibold">More from Youtube</h4>
+                <h4 className="hidden lg:block text-base font-semibold">
+                    More from Youtube
+                </h4>
                 <List
                     items={[
                         {
