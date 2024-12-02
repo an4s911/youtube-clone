@@ -5,7 +5,7 @@
 #app {
     @apply grid;
     grid-template-areas: "header header" "sidebar content";
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: max-content 1fr;
     grid-template-rows: auto 1fr;
 }
 

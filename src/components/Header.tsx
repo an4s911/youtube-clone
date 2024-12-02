@@ -1,3 +1,4 @@
+import { SiYoutube } from "@icons-pack/react-simple-icons";
 import {
     ArrowLeft,
     CircleUserRound,
@@ -6,9 +7,9 @@ import {
     Mic,
     Search,
     X,
-    Youtube,
 } from "lucide-react";
 import { ChangeEvent, useState } from "react";
+import { Link } from "react-router";
 
 type HeaderProps = {};
 
@@ -33,15 +34,17 @@ function Header({}: HeaderProps) {
                 <div className="menu hover:bg-gray-700 p-2 rounded-full cursor-pointer">
                     <MenuIcon strokeWidth={1} />
                 </div>
-                <div className="logo flex items-center gap-1 cursor-pointer">
-                    <Youtube />
+                <Link to="/" className="logo flex items-center gap-1 cursor-pointer">
+                    <div className="h-min">
+                        <SiYoutube color="#FF0033" title="Youtube" />
+                    </div>
                     <div className="flex">
                         <h1 className="font-semibold">Youtube</h1>
                         <p className="text-xs text-gray-400 relative top-0 h-full">
                             TR
                         </p>
                     </div>
-                </div>
+                </Link>
             </div>
             {isSearchOpen && (
                 <div className="md:hidden absolute top-0 left-0 w-full h-full bg-gray-900 flex items-center px-4">
@@ -92,8 +95,8 @@ function Header({}: HeaderProps) {
             <div className="center flex-1 hidden md:flex justify-center items-center gap-4 relative pl-4 pr-1 max-w-[732px]">
                 <div className="search flex flex-1 ml-10 relative">
                     <div
-                        className={`flex flex-1 items-center border border-gray-600 rounded-tl-full rounded-bl-full py-2 pr-4
-                                ${isSearchFocus ? "rounded-bl-none rounded-tl-none border-l-0 border-r border-blue-600" : ""}
+                        className={`flex flex-1 items-center border rounded-tl-full rounded-bl-full py-2 pr-4
+                                ${isSearchFocus ? "rounded-bl-none rounded-tl-none border-l-0 border-r border-blue-600" : "border-gray-600"}
 `}
                     >
                         {isSearchFocus && (
