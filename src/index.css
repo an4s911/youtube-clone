@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+    @apply grid;
+    grid-template-areas: "header header" "sidebar content";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+body {
+    @apply bg-gray-900 text-white;
+}
+
+header {
+    grid-area: header;
+}
