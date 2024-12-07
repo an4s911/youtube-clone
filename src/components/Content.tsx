@@ -1,7 +1,15 @@
-type ContentProps = {}
+import { Route, Routes } from "react-router";
 
-function Content({ }: ContentProps) {
-    return <div>Content</div>
+type ContentProps = {};
+
+function Content({}: ContentProps) {
+    return (
+        <main>
+            <Routes>
+                <Route path="/" element={<h1>Content</h1>} />
+            </Routes>
+        </main>
+    );
 }
 
 export default Content;

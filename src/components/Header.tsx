@@ -34,7 +34,10 @@ function Header({}: HeaderProps) {
                 <div className="menu hover:bg-gray-700 p-2 rounded-full cursor-pointer">
                     <MenuIcon strokeWidth={1} />
                 </div>
-                <Link to="/" className="logo flex items-center gap-1 cursor-pointer">
+                <Link
+                    to="/"
+                    className="logo flex items-center gap-1 cursor-pointer"
+                >
                     <div className="h-min">
                         <SiYoutube color="#FF0033" title="Youtube" />
                     </div>
