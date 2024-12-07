@@ -145,14 +145,17 @@ function Header({}: HeaderProps) {
                 <div className="options cursor-pointer">
                     <EllipsisVertical strokeWidth={1} />
                 </div>
-                <div className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer">
+                <Link
+                    to="/signin"
+                    className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer"
+                >
                     <div className="icon">
                         <CircleUserRound strokeWidth={1} />
                     </div>
                     <div className="text text-sm pr-2 text-nowrap">
                         <p>Sign in</p>
                     </div>
-                </div>
+                </Link>
             </div>
         </header>
     );
