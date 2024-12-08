@@ -33,6 +33,7 @@ function List({ items }: ListProps) {
 
     return items.map(({ name, icon, link }) => (
         <Link
+            key={name}
             to={link}
             className={`flex gap-6 text-sm py-2 px-4 rounded-lg hover:bg-gray-800 ${
                 path.pathname === link ? "bg-gray-800" : ""
