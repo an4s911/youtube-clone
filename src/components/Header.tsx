@@ -148,7 +148,16 @@ function Header({ isLoggedIn, userName }: HeaderProps) {
                 <div className="options cursor-pointer">
                     <EllipsisVertical strokeWidth={1} />
                 </div>
-                {!isLoggedIn && (
+                {isLoggedIn ? (
+                    <div className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer">
+                        <div className="icon">
+                            <CircleUserRound strokeWidth={1} />
+                        </div>
+                        <div className="text text-sm pr-2 text-nowrap">
+                            <p>{userName}</p>
+                        </div>
+                    </div>
+                ) : (
                     <Link
                         to="/signin"
                         className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer"
@@ -160,16 +169,6 @@ function Header({ isLoggedIn, userName }: HeaderProps) {
                             <p>Sign in</p>
                         </div>
                     </Link>
-                )}
-                {isLoggedIn && (
-                    <div className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer">
-                        <div className="icon">
-                            <CircleUserRound strokeWidth={1} />
-                        </div>
-                        <div className="text text-sm pr-2 text-nowrap">
-                            <p>{userName}</p>
-                        </div>
-                    </div>
                 )}
             </div>
         </header>
