@@ -24,3 +24,11 @@ aside {
 main {
     grid-area: content;
 }
+
+.signin-form input {
+    @apply p-2 rounded-md bg-gray-700 outline-none w-full;
+
+    &:focus {
+        @apply bg-gray-600;
+    }
+}

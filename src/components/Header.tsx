@@ -11,9 +11,12 @@ import {
 import { ChangeEvent, useState } from "react";
 import { Link } from "react-router";
 
-type HeaderProps = {};
+type HeaderProps = {
+    isLoggedIn: boolean;
+    userName: string;
+};
 
-function Header({}: HeaderProps) {
+function Header({ isLoggedIn, userName }: HeaderProps) {
     const [isSearchFocus, setIsSearchFocus] = useState(false);
     const [isSearchText, setIsSearchText] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -145,17 +148,29 @@ function Header({}: HeaderProps) {
                 <div className="options cursor-pointer">
                     <EllipsisVertical strokeWidth={1} />
                 </div>
-                <Link
-                    to="/signin"
-                    className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer"
-                >
-                    <div className="icon">
-                        <CircleUserRound strokeWidth={1} />
+                {!isLoggedIn && (
+                    <Link
+                        to="/signin"
+                        className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer"
+                    >
+                        <div className="icon">
+                            <CircleUserRound strokeWidth={1} />
+                        </div>
+                        <div className="text text-sm pr-2 text-nowrap">
+                            <p>Sign in</p>
+                        </div>
+                    </Link>
+                )}
+                {isLoggedIn && (
+                    <div className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer">
+                        <div className="icon">
+                            <CircleUserRound strokeWidth={1} />
+                        </div>
+                        <div className="text text-sm pr-2 text-nowrap">
+                            <p>{userName}</p>
+                        </div>
                     </div>
-                    <div className="text text-sm pr-2 text-nowrap">
-                        <p>Sign in</p>
-                    </div>
-                </Link>
+                )}
             </div>
         </header>
     );
