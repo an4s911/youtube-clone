@@ -3,6 +3,8 @@ import { SiYoutube } from "@icons-pack/react-simple-icons";
 import { FormEvent, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Loader2 } from "lucide-react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type SignInProps = {
     isLoggedIn: boolean;
@@ -26,26 +28,31 @@ function SignIn({ isLoggedIn, setUserName, setIsLoggedIn }: SignInProps) {
             password: formData.get("password"),
         };
 
-        axios
-            .post(URL + "signin/", data)
-            .then((res) => {
-                if (res.status === 200) {
-                    setUserName(res.data.name);
-                    setIsLoggedIn(true);
-                    localStorage.setItem("isLoggedIn", "true");
-                    localStorage.setItem("userName", res.data.name);
-                    navigate("/");
-                } else {
-                    console.log(res.status);
-                }
-            })
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err.response.data.error);
-            })
-            .finally(() => setIsLoading(false));
+        toast.promise(
+            axios
+                .post(URL + "signin/", data)
+                .then((res) => {
+                    if (res.status === 200) {
+                        setUserName(res.data.name);
+                        setIsLoggedIn(true);
+                        localStorage.setItem("isLoggedIn", "true");
+                        localStorage.setItem("userName", res.data.name);
+                        navigate("/");
+                    } else {
+                        console.log(res.status);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err.response.data.error);
+                })
+                .finally(() => setIsLoading(false)),
+            {
+                pending: "Signing in...",
+                success: "Signed in successfully",
+                error: "Something went wrong",
+            },
+            {},
+        );
     };
 
     // Check if user is already logged in

@@ -2,6 +2,7 @@ import Content from "./components/Content";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import { useState } from "react";
+import { Slide, ToastContainer } from "react-toastify";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(
@@ -26,6 +27,19 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserName={setUserName}
+            />
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Slide}
             />
         </div>
     );
