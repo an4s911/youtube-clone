@@ -34,6 +34,11 @@ function Header({ isLoggedIn, userName, email, handleLogout }: HeaderProps) {
         }
     };
 
+    const localHandleLogout = () => {
+        setIsUserOpen(false);
+        handleLogout();
+    };
+
     return (
         <header className="flex pl-6 pr-4 py-2 w-full justify-between items-center relative">
             <div className="left flex gap-3 md:gap-6">
@@ -168,7 +173,7 @@ function Header({ isLoggedIn, userName, email, handleLogout }: HeaderProps) {
                             <div className="bg-gray-700 py-5 px-5 rounded-md absolute top-12 right-6 flex flex-col gap-3">
                                 <div className="italic">{email}</div>
                                 <button
-                                    onClick={handleLogout}
+                                    onClick={localHandleLogout}
                                     className="bg-red-600 hover:bg-red-700 rounded-md py-2"
                                 >
                                     Logout
