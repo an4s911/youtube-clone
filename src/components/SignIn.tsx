@@ -10,9 +10,15 @@ type SignInProps = {
     isLoggedIn: boolean;
     setUserName: (value: string) => void;
     setIsLoggedIn: (value: boolean) => void;
+    setEmail: (value: string) => void;
 };
 
-function SignIn({ isLoggedIn, setUserName, setIsLoggedIn }: SignInProps) {
+function SignIn({
+    isLoggedIn,
+    setUserName,
+    setIsLoggedIn,
+    setEmail,
+}: SignInProps) {
     const [emailValue, setEmailValue] = useState("test@test.com");
     const [passwordValue, setPasswordValue] = useState("password123");
     const [isLoading, setIsLoading] = useState(false);
@@ -33,10 +39,12 @@ function SignIn({ isLoggedIn, setUserName, setIsLoggedIn }: SignInProps) {
                 .post(URL + "signin/", data)
                 .then((res) => {
                     if (res.status === 200) {
+                        setEmail(res.data.email);
                         setUserName(res.data.name);
                         setIsLoggedIn(true);
                         localStorage.setItem("isLoggedIn", "true");
                         localStorage.setItem("userName", res.data.name);
+                        localStorage.setItem("emailAddress", res.data.email);
                         navigate("/");
                     } else {
                         console.log(res.status);

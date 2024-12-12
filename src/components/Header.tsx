@@ -14,13 +14,16 @@ import { Link } from "react-router";
 type HeaderProps = {
     isLoggedIn: boolean;
     userName: string;
+    email: string;
+    handleLogout: () => void;
 };
 
-function Header({ isLoggedIn, userName }: HeaderProps) {
+function Header({ isLoggedIn, userName, email, handleLogout }: HeaderProps) {
     const [isSearchFocus, setIsSearchFocus] = useState(false);
     const [isSearchText, setIsSearchText] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchInputValue, setSearchInputValue] = useState("");
+    const [isUserOpen, setIsUserOpen] = useState(false);
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchInputValue(e.target.value);
@@ -149,14 +152,30 @@ function Header({ isLoggedIn, userName }: HeaderProps) {
                     <EllipsisVertical strokeWidth={1} />
                 </div>
                 {isLoggedIn ? (
-                    <div className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer">
-                        <div className="icon">
-                            <CircleUserRound strokeWidth={1} />
+                    <>
+                        <div
+                            className="user flex gap-2 border rounded-full items-center py-1 px-2 border-gray-600 hover:bg-gray-600 cursor-pointer"
+                            onClick={() => setIsUserOpen(!isUserOpen)}
+                        >
+                            <div className="icon">
+                                <CircleUserRound strokeWidth={1} />
+                            </div>
+                            <div className="text text-sm pr-2 text-nowrap">
+                                <p>{userName}</p>
+                            </div>
                         </div>
-                        <div className="text text-sm pr-2 text-nowrap">
-                            <p>{userName}</p>
-                        </div>
-                    </div>
+                        {isUserOpen && (
+                            <div className="bg-gray-700 py-5 px-5 rounded-md absolute top-12 right-6 flex flex-col gap-3">
+                                <div className="italic">{email}</div>
+                                <button
+                                    onClick={handleLogout}
+                                    className="bg-red-600 hover:bg-red-700 rounded-md py-2"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </>
                 ) : (
                     <Link
                         to="/signin"

@@ -18,15 +18,40 @@ function App() {
             }
         })(),
     );
+    const [email, setEmail] = useState(
+        (() => {
+            const email = localStorage.getItem("emailAddress");
+            if (isLoggedIn && email) {
+                return email;
+            } else {
+                return "";
+            }
+        })(),
+    );
+
+    const handleLogout = () => {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("emailAddress");
+        setIsLoggedIn(false);
+        setUserName("");
+        setEmail("");
+    };
 
     return (
         <div id="app">
             <Sidebar />
-            <Header isLoggedIn={isLoggedIn} userName={userName} />
+            <Header
+                isLoggedIn={isLoggedIn}
+                userName={userName}
+                email={email}
+                handleLogout={handleLogout}
+            />
             <Content
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserName={setUserName}
+                setEmail={setEmail}
             />
             <ToastContainer
                 position="bottom-center"

@@ -5,9 +5,15 @@ type ContentProps = {
     isLoggedIn: boolean;
     setIsLoggedIn: (value: boolean) => void;
     setUserName: (value: string) => void;
+    setEmail: (value: string) => void;
 };
 
-function Content({ isLoggedIn, setIsLoggedIn, setUserName }: ContentProps) {
+function Content({
+    isLoggedIn,
+    setIsLoggedIn,
+    setUserName,
+    setEmail,
+}: ContentProps) {
     return (
         <main>
             <Routes>
@@ -19,6 +25,7 @@ function Content({ isLoggedIn, setIsLoggedIn, setUserName }: ContentProps) {
                             isLoggedIn={isLoggedIn}
                             setUserName={setUserName}
                             setIsLoggedIn={setIsLoggedIn}
+                            setEmail={setEmail}
                         />
                     }
                 />
